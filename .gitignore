@@ -1,0 +1,17 @@
+.env
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+.streamlit/secrets.toml
+.ipynb_checkpoints/
+models/.candidates/
+Documents/

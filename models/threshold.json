@@ -1,0 +1,73 @@
+{
+  "model_name": "Calibrated RF + Engineered LightGBM Ensemble",
+  "threshold": 0.25,
+  "default_threshold": 0.5,
+  "threshold_policy": "minimum validation cost with FN=2, FP=1",
+  "trained_at": "2026-08-04T22:57:44.384452+00:00",
+  "data_rows": 12205,
+  "data_policy": "exact feature-and-target duplicates removed before split",
+  "split_rows": {
+    "train": 8543,
+    "weight_validation": 915,
+    "threshold_validation": 916,
+    "test": 1831
+  },
+  "ensemble": {
+    "random_forest_weight": 0.8,
+    "engineered_lightgbm_weight": 0.2
+  },
+  "segment_policy": {
+    "strategy": "fixed business bands aligned to validation-selected threshold",
+    "codes": ["LOW", "MEDIUM", "HIGH"],
+    "boundaries": [0.0, 0.125, 0.25, 1.0]
+  },
+  "test_metrics": {
+    "model": "RF + Engineered LightGBM Ensemble",
+    "roc_auc": 0.9319799941159164,
+    "pr_auc": 0.7448380730138457,
+    "threshold_default": 0.5,
+    "threshold_optimized": 0.25,
+    "f1_default": 0.6777163904235728,
+    "f1_optimized": 0.6736214605067065,
+    "precision_optimized": 0.587012987012987,
+    "recall_optimized": 0.7902097902097902,
+    "accuracy_optimized": 0.880393227744402,
+    "report_optimized": {
+      "0": {
+        "precision": 0.9585062240663901,
+        "recall": 0.8970873786407767,
+        "f1-score": 0.9267803410230692,
+        "support": 1545.0
+      },
+      "1": {
+        "precision": 0.587012987012987,
+        "recall": 0.7902097902097902,
+        "f1-score": 0.6736214605067065,
+        "support": 286.0
+      },
+      "accuracy": 0.880393227744402,
+      "macro avg": {
+        "precision": 0.7727596055396886,
+        "recall": 0.8436485844252835,
+        "f1-score": 0.8002009007648878,
+        "support": 1831.0
+      },
+      "weighted avg": {
+        "precision": 0.9004794267986275,
+        "recall": 0.880393227744402,
+        "f1-score": 0.8872372280642054,
+        "support": 1831.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        1386,
+        159
+      ],
+      [
+        60,
+        226
+      ]
+    ]
+  }
+}

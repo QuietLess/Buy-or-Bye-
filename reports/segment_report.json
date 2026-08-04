@@ -1,0 +1,56 @@
+{
+  "model_output": "calibrated predict_proba[:, 1]",
+  "decision_threshold": 0.25,
+  "evaluated_rows": 1831,
+  "actual_buyers": 286,
+  "segments": [
+    {
+      "code": "LOW",
+      "label": "Düşük niyet",
+      "lower": 0.0,
+      "upper": 0.125,
+      "action": "Ücretli teşvik verme; düşük maliyetli içerik ve yeniden hedefleme ile ilgiyi geliştir.",
+      "objective": "Gereksiz kampanya maliyetini önleyip ilgiyi geliştirmek",
+      "color": "#64748b",
+      "sessions": 1319,
+      "session_share": 0.7203713817586018,
+      "buyers": 35,
+      "buyer_capture": 0.12237762237762238,
+      "observed_conversion_rate": 0.026535253980288095,
+      "mean_predicted_probability": 0.02630023879447537
+    },
+    {
+      "code": "MEDIUM",
+      "label": "Değerlendirme aşaması",
+      "lower": 0.125,
+      "upper": 0.25,
+      "action": "Sosyal kanıt, ürün karşılaştırma ve stok/kargo bilgisini görünür kıl.",
+      "objective": "Kararsızlığı azaltıp yüksek niyete taşımak",
+      "color": "#eab308",
+      "sessions": 127,
+      "session_share": 0.0693610049153468,
+      "buyers": 25,
+      "buyer_capture": 0.08741258741258741,
+      "observed_conversion_rate": 0.1968503937007874,
+      "mean_predicted_probability": 0.17969547230214292
+    },
+    {
+      "code": "HIGH",
+      "label": "Yüksek niyet",
+      "lower": 0.25,
+      "upper": 1.0,
+      "action": "Checkout desteği ve kişiselleştirilmiş hatırlatma sun; teşviki kontrollü test ederek marjı koru.",
+      "objective": "Satın alma sürtünmesini azaltıp dönüşümü tamamlamak",
+      "color": "#16a34a",
+      "sessions": 385,
+      "session_share": 0.21026761332605134,
+      "buyers": 226,
+      "buyer_capture": 0.7902097902097902,
+      "observed_conversion_rate": 0.587012987012987,
+      "mean_predicted_probability": 0.605331593226806
+    }
+  ],
+  "model_name": "Calibrated RF + Engineered LightGBM Ensemble",
+  "generated_at": "2026-08-04T22:59:47.695614+00:00",
+  "evaluation_note": "Segment sınırları model eğitiminden sonra tanımlandı; test seti yalnızca raporlama için kullanıldı."
+}

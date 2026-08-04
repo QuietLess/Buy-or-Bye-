@@ -1,0 +1,282 @@
+{
+  "created_at": "2026-08-04T22:56:47.906121+00:00",
+  "selection_rule": "Promote only when engineered 5-fold train CV PR-AUC exceeds baseline; test is reporting-only.",
+  "engineered_features": [
+    "TotalPages",
+    "TotalDuration",
+    "AdminDurationPerPage",
+    "InfoDurationPerPage",
+    "ProductDurationPerPage",
+    "DurationPerPage",
+    "ProductPageShare",
+    "AdminPageShare",
+    "InfoPageShare",
+    "ExitBounceGap",
+    "RetentionScore",
+    "EngagementScore",
+    "ProductEngagement",
+    "LogAdministrativeDuration",
+    "LogInformationalDuration",
+    "LogProductDuration",
+    "LogTotalDuration",
+    "LogProductPages",
+    "LogPageValues",
+    "MonthSin",
+    "MonthCos",
+    "HasAdministrative",
+    "HasInformational",
+    "HasPageValue",
+    "WeekendSpecialDay",
+    "ReturningWeekend",
+    "PageValuePerProductPage"
+  ],
+  "fixed_parameter_comparison": {
+    "baseline_random_forest": 0.7522093243432271,
+    "baseline_lightgbm": 0.7548608298590549,
+    "engineered_random_forest": {
+      "mean": 0.7468928050368325,
+      "std": 0.007638230972541099,
+      "folds": [
+        0.750461663323499,
+        0.7541291269446516,
+        0.7390499324066682,
+        0.7364474593340431,
+        0.7543758431753013
+      ]
+    },
+    "engineered_lightgbm": {
+      "mean": 0.755904530417234,
+      "std": 0.009803474236394829,
+      "folds": [
+        0.7627579222402244,
+        0.7645413269844556,
+        0.7411046704577272,
+        0.7472016401474109,
+        0.7639170922563518
+      ]
+    }
+  },
+  "tuned_engineered_results": [
+    {
+      "model": "Engineered Random Forest",
+      "cv_pr_auc_mean": 0.7528589185744556,
+      "cv_pr_auc_std": 0.007729878733330369,
+      "cv_train_pr_auc_mean": 0.883696543039472,
+      "best_params": {
+        "classifier__n_estimators": 500,
+        "classifier__min_samples_split": 10,
+        "classifier__min_samples_leaf": 12,
+        "classifier__max_features": 0.3,
+        "classifier__max_depth": 18,
+        "classifier__class_weight": "balanced"
+      }
+    },
+    {
+      "model": "Engineered LightGBM",
+      "cv_pr_auc_mean": 0.756202484803553,
+      "cv_pr_auc_std": 0.007969532842880557,
+      "cv_train_pr_auc_mean": 0.8614278187698303,
+      "best_params": {
+        "classifier__subsample_freq": 1,
+        "classifier__subsample": 0.85,
+        "classifier__reg_lambda": 0.7,
+        "classifier__reg_alpha": 0.1,
+        "classifier__num_leaves": 47,
+        "classifier__n_estimators": 200,
+        "classifier__min_child_samples": 35,
+        "classifier__max_depth": 6,
+        "classifier__learning_rate": 0.02,
+        "classifier__colsample_bytree": 0.85
+      }
+    }
+  ],
+  "baseline_best_cv_pr_auc": 0.7548608298590549,
+  "engineered_winner": "Engineered LightGBM",
+  "engineered_winner_cv_pr_auc": 0.756202484803553,
+  "promoted_to_final": true,
+  "best_iteration_early_stopping": 115,
+  "threshold_analysis": {
+    "f1_optimal": {
+      "threshold": 0.33,
+      "f1": 0.6752411575562701,
+      "precision": 0.625,
+      "recall": 0.7342657342657343,
+      "fp": 126,
+      "fn": 76,
+      "business_cost": 278.0
+    },
+    "cost_optimal": {
+      "threshold": 0.33,
+      "f1": 0.6752411575562701,
+      "precision": 0.625,
+      "recall": 0.7342657342657343,
+      "fp": 126,
+      "fn": 76,
+      "business_cost": 278.0
+    },
+    "costs": {
+      "false_positive": 1.0,
+      "false_negative": 2.0
+    }
+  },
+  "calibration": {
+    "validation": {
+      "raw_brier": 0.1023884066719015,
+      "calibrated_brier": 0.07086195178334437,
+      "raw_log_loss": 0.3335732798447481,
+      "calibrated_log_loss": 0.23053245005452438
+    },
+    "test": {
+      "raw_brier": 0.10144823010069785,
+      "calibrated_brier": 0.06892855428978333,
+      "raw_log_loss": 0.3322816626833653,
+      "calibrated_log_loss": 0.22423163319445016
+    }
+  },
+  "pagevalues_ablation": {
+    "with_pagevalues_pr_auc_mean": 0.756202484803553,
+    "with_pagevalues_pr_auc_std": 0.007969532842880557,
+    "without_pagevalues_pr_auc_mean": 0.3796516021663384,
+    "without_pagevalues_pr_auc_std": 0.028904293264451188,
+    "pr_auc_drop": 0.3765508826372146
+  },
+  "multi_seed_stability": {
+    "runs": [
+      {
+        "seed": 7,
+        "pr_auc": 0.7735062261160017,
+        "roc_auc": 0.9438539523837374
+      },
+      {
+        "seed": 21,
+        "pr_auc": 0.7584672588356491,
+        "roc_auc": 0.9332365378405113
+      },
+      {
+        "seed": 42,
+        "pr_auc": 0.7558329729447023,
+        "roc_auc": 0.9366108185491356
+      },
+      {
+        "seed": 73,
+        "pr_auc": 0.7748342225881799,
+        "roc_auc": 0.9377957581197603
+      },
+      {
+        "seed": 101,
+        "pr_auc": 0.768442346181895,
+        "roc_auc": 0.938901871238262
+      }
+    ],
+    "pr_auc_mean": 0.7662166053332855,
+    "pr_auc_std": 0.00774890977305187,
+    "roc_auc_mean": 0.9380797876262813,
+    "roc_auc_std": 0.0034557896784636857
+  },
+  "temporal_proxy": {
+    "definition": "Train Feb-Oct; holdout Nov-Dec (month proxy, no timestamp/year available)",
+    "train_rows": 7517,
+    "holdout_rows": 4688,
+    "holdout_positive_rate": 0.20819112627986347,
+    "pr_auc": 0.66554435061886,
+    "roc_auc": 0.8307908113694177
+  },
+  "test_metrics": {
+    "model": "Engineered LightGBM",
+    "roc_auc": 0.9354900762667753,
+    "pr_auc": 0.7506708836679926,
+    "threshold_default": 0.5,
+    "threshold_optimized": 0.33,
+    "f1_default": 0.6785714285714286,
+    "f1_optimized": 0.6849757673667205,
+    "precision_optimized": 0.6366366366366366,
+    "recall_optimized": 0.7412587412587412,
+    "accuracy_optimized": 0.8935008192244676,
+    "report_optimized": {
+      "0": {
+        "precision": 0.9506008010680908,
+        "recall": 0.9216828478964402,
+        "f1-score": 0.9359185014788038,
+        "support": 1545.0
+      },
+      "1": {
+        "precision": 0.6366366366366366,
+        "recall": 0.7412587412587412,
+        "f1-score": 0.6849757673667205,
+        "support": 286.0
+      },
+      "accuracy": 0.8935008192244676,
+      "macro avg": {
+        "precision": 0.7936187188523637,
+        "recall": 0.8314707945775908,
+        "f1-score": 0.8104471344227622,
+        "support": 1831.0
+      },
+      "weighted avg": {
+        "precision": 0.9015599758210149,
+        "recall": 0.8935008192244676,
+        "f1-score": 0.8967215479255237,
+        "support": 1831.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        1424,
+        121
+      ],
+      [
+        74,
+        212
+      ]
+    ]
+  },
+  "previous_final_test_metrics": {
+    "model": "LightGBM",
+    "roc_auc": 0.9359359087514427,
+    "pr_auc": 0.7516078751532799,
+    "threshold_default": 0.5,
+    "threshold_optimized": 0.46,
+    "f1_default": 0.6727941176470589,
+    "f1_optimized": 0.6928571428571428,
+    "precision_optimized": 0.708029197080292,
+    "recall_optimized": 0.6783216783216783,
+    "accuracy_optimized": 0.9060622610595304,
+    "report_optimized": {
+      "0": {
+        "precision": 0.9409120102761721,
+        "recall": 0.948220064724919,
+        "f1-score": 0.9445519019987105,
+        "support": 1545.0
+      },
+      "1": {
+        "precision": 0.708029197080292,
+        "recall": 0.6783216783216783,
+        "f1-score": 0.6928571428571428,
+        "support": 286.0
+      },
+      "accuracy": 0.9060622610595304,
+      "macro avg": {
+        "precision": 0.8244706036782321,
+        "recall": 0.8132708715232987,
+        "f1-score": 0.8187045224279267,
+        "support": 1831.0
+      },
+      "weighted avg": {
+        "precision": 0.9045359946704803,
+        "recall": 0.9060622610595304,
+        "f1-score": 0.9052374830394051,
+        "support": 1831.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        1465,
+        80
+      ],
+      [
+        92,
+        194
+      ]
+    ]
+  }
+}

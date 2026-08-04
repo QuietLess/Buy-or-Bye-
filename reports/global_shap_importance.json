@@ -1,0 +1,101 @@
+{
+  "model_name": "Calibrated RF + Engineered LightGBM Ensemble",
+  "trained_at": "2026-08-04T22:57:44.384452+00:00",
+  "generated_at": "2026-08-04T22:58:45.513294+00:00",
+  "reference": "Deterministic 500-row sample from training split",
+  "explanation_scope": "engineered_lightgbm_component",
+  "explained_component_weight": 0.2,
+  "interpretation": "For the ensemble, SHAP explains only the engineered LightGBM component; mean_abs_shap ranks component reliance and is not probability or causality.",
+  "features": [
+    {
+      "feature": "num__PageValues",
+      "display_name": "Ziyaret edilen sayfaların dönüşüm değeri",
+      "mean_abs_shap": 0.6983112320268205,
+      "mean_signed_shap": 0.01226667475000803
+    },
+    {
+      "feature": "num__MonthSin",
+      "display_name": "Yıl içindeki dönemsel ay etkisi (sinüs)",
+      "mean_abs_shap": 0.6027394748099472,
+      "mean_signed_shap": 0.03559663836918998
+    },
+    {
+      "feature": "num__PageValuePerProductPage",
+      "display_name": "Ürün sayfası başına dönüşüm değeri",
+      "mean_abs_shap": 0.30252352766731005,
+      "mean_signed_shap": -0.02099098812238007
+    },
+    {
+      "feature": "num__LogPageValues",
+      "display_name": "Dönüşüm değerinin ölçeklenmiş değeri",
+      "mean_abs_shap": 0.1577233665345077,
+      "mean_signed_shap": -0.012810174121419179
+    },
+    {
+      "feature": "cat__Month_Nov",
+      "display_name": "Ziyaret ayı: Kasım",
+      "mean_abs_shap": 0.09622996977739012,
+      "mean_signed_shap": -0.012685564155332757
+    },
+    {
+      "feature": "num__AdminPageShare",
+      "display_name": "Hesap/işlem sayfalarının ziyaret içindeki payı",
+      "mean_abs_shap": 0.058132010702847126,
+      "mean_signed_shap": -0.0067577600964838745
+    },
+    {
+      "feature": "num__ExitRates",
+      "display_name": "Sayfa sonrası siteden çıkış oranı",
+      "mean_abs_shap": 0.049230457337375966,
+      "mean_signed_shap": -0.004570557649076666
+    },
+    {
+      "feature": "num__BounceRates",
+      "display_name": "Tek sayfadan ayrılma oranı",
+      "mean_abs_shap": 0.04738575404250228,
+      "mean_signed_shap": -0.0021404480232765375
+    },
+    {
+      "feature": "num__RetentionScore",
+      "display_name": "Sitede kalma skoru",
+      "mean_abs_shap": 0.04357826441619622,
+      "mean_signed_shap": -0.009131278383187022
+    },
+    {
+      "feature": "num__MonthCos",
+      "display_name": "Yıl içindeki dönemsel ay etkisi (kosinüs)",
+      "mean_abs_shap": 0.03886836933541635,
+      "mean_signed_shap": -0.005227621393965102
+    },
+    {
+      "feature": "num__ProductPageShare",
+      "display_name": "Ürün sayfalarının ziyaret içindeki payı",
+      "mean_abs_shap": 0.03821217697631661,
+      "mean_signed_shap": -0.006010720407731621
+    },
+    {
+      "feature": "cat__Month_May",
+      "display_name": "Ziyaret ayı: Mayıs",
+      "mean_abs_shap": 0.025605320372527062,
+      "mean_signed_shap": 0.000603097252827586
+    },
+    {
+      "feature": "num__Administrative",
+      "display_name": "Hesap ve işlem adımı görüntüleme sayısı",
+      "mean_abs_shap": 0.02397138367588229,
+      "mean_signed_shap": 0.0052730024251750225
+    },
+    {
+      "feature": "num__TotalDuration",
+      "display_name": "Sitede geçirilen toplam süre",
+      "mean_abs_shap": 0.023617079134531597,
+      "mean_signed_shap": 0.0031929895043091485
+    },
+    {
+      "feature": "num__TotalPages",
+      "display_name": "Toplam görüntülenen sayfa",
+      "mean_abs_shap": 0.023289349595338033,
+      "mean_signed_shap": 0.005744991696073488
+    }
+  ]
+}

@@ -1,0 +1,189 @@
+{
+  "trained_at": "2026-08-04T22:44:42.112851+00:00",
+  "protocol": "70/15/15 stratified holdout; tuning only on train with 5-fold CV",
+  "model_selection_metric": "mean CV PR-AUC",
+  "selected_model": "LightGBM",
+  "cv_results": [
+    {
+      "model": "Logistic Regression",
+      "cv_pr_auc_mean": 0.6554395425398758,
+      "cv_pr_auc_std": 0.026389259840111062,
+      "cv_train_pr_auc_mean": 0.6567427406631147,
+      "best_params": {
+        "classifier__C": 0.03,
+        "classifier__penalty": "l1",
+        "classifier__solver": "liblinear"
+      }
+    },
+    {
+      "model": "Random Forest",
+      "cv_pr_auc_mean": 0.7522093243432271,
+      "cv_pr_auc_std": 0.007482947734835347,
+      "cv_train_pr_auc_mean": 0.9040382784831467,
+      "best_params": {
+        "classifier__n_estimators": 350,
+        "classifier__min_samples_split": 10,
+        "classifier__min_samples_leaf": 8,
+        "classifier__max_features": 0.5,
+        "classifier__max_depth": null,
+        "classifier__class_weight": "balanced_subsample"
+      }
+    },
+    {
+      "model": "LightGBM",
+      "cv_pr_auc_mean": 0.7548608298590549,
+      "cv_pr_auc_std": 0.00790496230962723,
+      "cv_train_pr_auc_mean": 0.8343118900669863,
+      "best_params": {
+        "classifier__subsample_freq": 1,
+        "classifier__subsample": 0.7,
+        "classifier__reg_lambda": 0.0,
+        "classifier__reg_alpha": 0.2,
+        "classifier__num_leaves": 31,
+        "classifier__n_estimators": 200,
+        "classifier__min_child_samples": 50,
+        "classifier__max_depth": 5,
+        "classifier__learning_rate": 0.03,
+        "classifier__colsample_bytree": 0.95
+      }
+    }
+  ],
+  "best_iteration_early_stopping": 215,
+  "threshold_analysis": {
+    "f1_optimal": {
+      "threshold": 0.46,
+      "f1": 0.6850828729281768,
+      "precision": 0.7237354085603113,
+      "recall": 0.6503496503496503,
+      "fp": 71,
+      "fn": 100,
+      "business_cost": 271.0
+    },
+    "cost_optimal": {
+      "threshold": 0.46,
+      "f1": 0.6850828729281768,
+      "precision": 0.7237354085603113,
+      "recall": 0.6503496503496503,
+      "fp": 71,
+      "fn": 100,
+      "business_cost": 271.0
+    },
+    "costs": {
+      "false_positive": 1.0,
+      "false_negative": 2.0
+    }
+  },
+  "selected_threshold_policy": "minimum validation cost with FN=2, FP=1",
+  "calibration": {
+    "validation": {
+      "raw_brier": 0.09907208677974129,
+      "calibrated_brier": 0.06919937089756269,
+      "raw_log_loss": 0.31689599295630827,
+      "calibrated_log_loss": 0.2255551786699446
+    },
+    "test": {
+      "raw_brier": 0.0981689739305203,
+      "calibrated_brier": 0.06830360337172144,
+      "raw_log_loss": 0.3156326751246077,
+      "calibrated_log_loss": 0.22209248526053135
+    }
+  },
+  "pagevalues_ablation": {
+    "with_pagevalues_pr_auc_mean": 0.7548608298590549,
+    "with_pagevalues_pr_auc_std": 0.00790496230962723,
+    "without_pagevalues_pr_auc_mean": 0.38569786949584695,
+    "without_pagevalues_pr_auc_std": 0.025276082321440643,
+    "pr_auc_drop": 0.36916296036320795
+  },
+  "multi_seed_stability": {
+    "runs": [
+      {
+        "seed": 7,
+        "pr_auc": 0.7692352734626666,
+        "roc_auc": 0.9430237318476666
+      },
+      {
+        "seed": 21,
+        "pr_auc": 0.757888152194236,
+        "roc_auc": 0.9350292039291171
+      },
+      {
+        "seed": 42,
+        "pr_auc": 0.7578345760558359,
+        "roc_auc": 0.9372948287304619
+      },
+      {
+        "seed": 73,
+        "pr_auc": 0.7726307424154085,
+        "roc_auc": 0.9368612832437847
+      },
+      {
+        "seed": 101,
+        "pr_auc": 0.7685125703076578,
+        "roc_auc": 0.9386959053472305
+      }
+    ],
+    "pr_auc_mean": 0.7652202628871609,
+    "pr_auc_std": 0.006167382298751553,
+    "roc_auc_mean": 0.9381809906196523,
+    "roc_auc_std": 0.0026899051869013553
+  },
+  "temporal_proxy": {
+    "definition": "Train Feb-Oct; holdout Nov-Dec (month proxy, no timestamp/year available)",
+    "train_rows": 7517,
+    "holdout_rows": 4688,
+    "holdout_positive_rate": 0.20819112627986347,
+    "pr_auc": 0.6629729731749958,
+    "roc_auc": 0.8297122590888215
+  },
+  "external_validation": "Not available: dataset contains one unidentified site only.",
+  "test_metrics": {
+    "model": "LightGBM",
+    "roc_auc": 0.9359359087514427,
+    "pr_auc": 0.7516078751532799,
+    "threshold_default": 0.5,
+    "threshold_optimized": 0.46,
+    "f1_default": 0.6727941176470589,
+    "f1_optimized": 0.6928571428571428,
+    "precision_optimized": 0.708029197080292,
+    "recall_optimized": 0.6783216783216783,
+    "accuracy_optimized": 0.9060622610595304,
+    "report_optimized": {
+      "0": {
+        "precision": 0.9409120102761721,
+        "recall": 0.948220064724919,
+        "f1-score": 0.9445519019987105,
+        "support": 1545.0
+      },
+      "1": {
+        "precision": 0.708029197080292,
+        "recall": 0.6783216783216783,
+        "f1-score": 0.6928571428571428,
+        "support": 286.0
+      },
+      "accuracy": 0.9060622610595304,
+      "macro avg": {
+        "precision": 0.8244706036782321,
+        "recall": 0.8132708715232987,
+        "f1-score": 0.8187045224279267,
+        "support": 1831.0
+      },
+      "weighted avg": {
+        "precision": 0.9045359946704803,
+        "recall": 0.9060622610595304,
+        "f1-score": 0.9052374830394051,
+        "support": 1831.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        1465,
+        80
+      ],
+      [
+        92,
+        194
+      ]
+    ]
+  }
+}
