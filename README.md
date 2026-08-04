@@ -6,7 +6,7 @@ Tüm veri istatistikleri, deneyler, hyperparameter tuning, feature engineering, 
 sonuçları, SHAP, segmentasyon ve sınırlamaları içeren ayrıntılı rapor:
 [`Documents/PROJECT_TECHNICAL_REPORT.md`](Documents/PROJECT_TECHNICAL_REPORT.md).
 
-["Streamlit Page](https://buy-or-bye.streamlit.app)
+[`Streamlit Page`](https://buy-or-bye.streamlit.app)
 
 ## Sonuç
 
