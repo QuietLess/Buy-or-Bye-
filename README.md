@@ -6,6 +6,8 @@ Tüm veri istatistikleri, deneyler, hyperparameter tuning, feature engineering, 
 sonuçları, SHAP, segmentasyon ve sınırlamaları içeren ayrıntılı rapor:
 [`Documents/PROJECT_TECHNICAL_REPORT.md`](Documents/PROJECT_TECHNICAL_REPORT.md).
 
+["Streamlit Page](https://buy-or-bye.streamlit.app)
+
 ## Sonuç
 
 Ham 12.330 oturumdaki 125 exact duplicate splitten önce kaldırıldı; 12.205 tekil oturum stratified %70/%15/%15 train/validation/test ayrımıyla işlendi. Hiperparametre araması yalnız train setinde 5-fold CV PR-AUC ile, calibration train OOF tahminleriyle ve karar eşiği validation setinde FN=2/FP=1 maliyetiyle yapıldı. Test seti yalnız final raporlamada kullanıldı.
