@@ -8,8 +8,6 @@ sonuçları, SHAP, segmentasyon ve sınırlamaları içeren ayrıntılı rapor:
 
 [`Streamlit Page`](https://buy-or-bye.streamlit.app)
 
-Sunum: [`slides/Buy_or_Bye_Capstone.pptx`](slides/Buy_or_Bye_Capstone.pptx)
-
 ## Sonuç
 
 Ham 12.330 oturumdaki 125 exact duplicate splitten önce kaldırıldı; 12.205 tekil oturum stratified %70/%15/%15 train/validation/test ayrımıyla işlendi. Hiperparametre araması yalnız train setinde 5-fold CV PR-AUC ile, calibration train OOF tahminleriyle ve karar eşiği validation setinde FN=2/FP=1 maliyetiyle yapıldı. Test seti yalnız final raporlamada kullanıldı.
@@ -43,8 +41,7 @@ Ensemble calibration test Brier skoru `0.0860 → 0.0696`, log loss `0.2805 → 
 ├── models/                           # Eğitilmiş pipeline ve threshold metadata
 ├── outputs/                          # Headless üretilen EDA, metrik ve SHAP görselleri
 ├── PROJECT_TECHNICAL_REPORT.md       # Ayrıntılı teknik rapor
-├── slides/Buy_or_Bye_Capstone.pptx   # İki slaytlık sunum
-├── scripts/generate_deliverables.py  # Notebook/EDA/slayt üretimi
+├── scripts/generate_deliverables.py  # Notebook ve EDA üretimi
 └── tests/                             # Birim testleri
 ```
 
@@ -86,7 +83,7 @@ Random Forest + Engineered LightGBM soft-voting deneyini çalıştırmak için:
 python -m src.ensemble_experiment
 ```
 
-Notebook, EDA görselleri ve sunumu mevcut eğitim sonuçlarından yeniden üretmek için:
+Notebook ve EDA görsellerini mevcut eğitim sonuçlarından yeniden üretmek için:
 
 ```bash
 python -m scripts.generate_deliverables
