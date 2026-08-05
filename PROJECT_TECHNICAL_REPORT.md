@@ -975,37 +975,39 @@ Matplotlib grafikleri:
 
 | Dosya | İçerik |
 |---|---|
-| [`models/best_model.pkl`](../models/best_model.pkl) | Final calibrated engineered LightGBM |
-| [`models/threshold.json`](../models/threshold.json) | Threshold, segment ve test metadata |
-| [`models/ensemble_model.pkl`](../models/ensemble_model.pkl) | Promote edilmeyen ensemble adayı |
-| [`model_comparison.json`](../reports/model_comparison.json) | Baseline sonuçlar |
-| [`tuning_report.json`](../reports/tuning_report.json) | Tuning, calibration ve robustness |
-| [`feature_engineering_report.json`](../reports/feature_engineering_report.json) | Feature deneyleri ve final seçim |
-| [`ensemble_report.json`](../reports/ensemble_report.json) | Ensemble ağırlık deneyi |
-| [`segment_report.json`](../reports/segment_report.json) | Üç segment performansı |
-| [`global_shap_importance.json`](../reports/global_shap_importance.json) | `%20` LGB bileşeni global SHAP sıralaması |
+| [`models/best_model.pkl`](models/best_model.pkl) | Final calibrated soft-voting ensemble: `%80` Random Forest + `%20` Engineered LightGBM |
+| [`models/threshold.json`](models/threshold.json) | Final ensemble için `0,25` karar eşiği, `%80/%20` ağırlıklar, segment ve test metadata’sı |
+| [`reports/model_comparison.json`](reports/model_comparison.json) | Baseline sonuçlar |
+| [`reports/tuning_report.json`](reports/tuning_report.json) | Tuning, calibration ve robustness |
+| [`reports/feature_engineering_report.json`](reports/feature_engineering_report.json) | Feature deneyleri ve final seçim |
+| [`reports/ensemble_report.json`](reports/ensemble_report.json) | Ensemble ağırlık deneyi |
+| [`reports/segment_report.json`](reports/segment_report.json) | Üç segment performansı |
+| [`reports/global_shap_importance.json`](reports/global_shap_importance.json) | `%20` LGB bileşeni global SHAP sıralaması |
 
 ### 21.5 Başlıca görseller
 
 | Görsel | Açıklama |
 |---|---|
-| [`target_distribution.png`](../outputs/target_distribution.png) | Sınıf dağılımı |
-| [`feature_distributions.png`](../outputs/feature_distributions.png) | Sayısal dağılımlar |
-| [`correlation_heatmap.png`](../outputs/correlation_heatmap.png) | Korelasyon matrisi |
-| [`roc_curve.png`](../outputs/roc_curve.png) | ROC eğrisi |
-| [`pr_curve.png`](../outputs/pr_curve.png) | Precision-recall eğrisi |
-| [`confusion_matrix.png`](../outputs/confusion_matrix.png) | Final confusion matrix |
-| [`threshold_optimization.png`](../outputs/threshold_optimization.png) | Threshold analizi |
-| [`calibration_curve.png`](../outputs/calibration_curve.png) | Calibration karşılaştırması |
-| [`stability_analysis.png`](../outputs/stability_analysis.png) | Seed stabilitesi |
-| [`shap_summary.png`](../outputs/shap_summary.png) | Global SHAP beeswarm |
-| [`global_shap_dashboard.png`](../outputs/global_shap_dashboard.png) | Önyüz global SHAP bar grafiği |
-| [`segment_performance.png`](../outputs/segment_performance.png) | Segment hacmi ve dönüşümü |
-| [`ensemble_weight_search.png`](../outputs/ensemble_weight_search.png) | Ensemble ağırlık taraması |
+| [`outputs/target_distribution.png`](outputs/target_distribution.png) | Sınıf dağılımı |
+| [`outputs/feature_distributions.png`](outputs/feature_distributions.png) | Sayısal dağılımlar |
+| [`outputs/correlation_heatmap.png`](outputs/correlation_heatmap.png) | Korelasyon matrisi |
+| [`outputs/roc_curve.png`](outputs/roc_curve.png) | ROC eğrisi |
+| [`outputs/pr_curve.png`](outputs/pr_curve.png) | Precision-recall eğrisi |
+| [`outputs/confusion_matrix.png`](outputs/confusion_matrix.png) | Final confusion matrix |
+| [`outputs/threshold_optimization.png`](outputs/threshold_optimization.png) | Threshold analizi |
+| [`outputs/calibration_curve.png`](outputs/calibration_curve.png) | Calibration karşılaştırması |
+| [`outputs/stability_analysis.png`](outputs/stability_analysis.png) | Seed stabilitesi |
+| [`outputs/shap_summary.png`](outputs/shap_summary.png) | Global SHAP beeswarm |
+| [`outputs/global_shap_dashboard.png`](outputs/global_shap_dashboard.png) | Önyüz global SHAP bar grafiği |
+| [`outputs/segment_performance.png`](outputs/segment_performance.png) | Segment hacmi ve dönüşümü |
+| [`outputs/ensemble_weight_search.png`](outputs/ensemble_weight_search.png) | Ensemble ağırlık taraması |
 
 ### 21.6 Test durumu
 
-Son doğrulamada **28 test geçti**. Test kapsamı deduplication, veri doğrulama, preprocessing davranışı, calibration wrapper, threshold, feature engineering, ensemble, segment sınırları, batch dashboard, SHAP ranking ve kullanıcı dostu feature adlarını kapsar.
+Son yerel doğrulamada (**5 Ağustos 2026**, Python **3.11.15**) `pytest -q` çıktısı
+`28 passed, 14 warnings in 2.73s` oldu. Test kapsamı deduplication, veri doğrulama,
+preprocessing davranışı, calibration wrapper, threshold, feature engineering, ensemble,
+segment sınırları, batch dashboard, SHAP ranking ve kullanıcı dostu feature adlarını kapsar.
 
 ---
 

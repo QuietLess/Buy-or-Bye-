@@ -4,9 +4,11 @@ Bir e-ticaret oturumunun satın alma ile sonuçlanma olasılığını tahmin ede
 
 Tüm veri istatistikleri, deneyler, hyperparameter tuning, feature engineering, model
 sonuçları, SHAP, segmentasyon ve sınırlamaları içeren ayrıntılı rapor:
-[`Documents/PROJECT_TECHNICAL_REPORT.md`](Documents/PROJECT_TECHNICAL_REPORT.md).
+[`PROJECT_TECHNICAL_REPORT.md`](PROJECT_TECHNICAL_REPORT.md).
 
 [`Streamlit Page`](https://buy-or-bye.streamlit.app)
+
+Sunum: [`slides/Buy_or_Bye_Capstone.pptx`](slides/Buy_or_Bye_Capstone.pptx)
 
 ## Sonuç
 
@@ -40,6 +42,7 @@ Ensemble calibration test Brier skoru `0.0860 → 0.0696`, log loss `0.2805 → 
 ├── app/streamlit_app.py              # İnteraktif demo
 ├── models/                           # Eğitilmiş pipeline ve threshold metadata
 ├── outputs/                          # Headless üretilen EDA, metrik ve SHAP görselleri
+├── PROJECT_TECHNICAL_REPORT.md       # Ayrıntılı teknik rapor
 ├── slides/Buy_or_Bye_Capstone.pptx   # İki slaytlık sunum
 ├── scripts/generate_deliverables.py  # Notebook/EDA/slayt üretimi
 └── tests/                             # Birim testleri
@@ -100,6 +103,8 @@ Testler:
 ```bash
 pytest -q
 ```
+
+Son yerel doğrulama: **5 Ağustos 2026**, Python **3.11.15** — `28 passed, 14 warnings in 2.73s`.
 
 ## Uygulama özellikleri
 

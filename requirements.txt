@@ -12,5 +12,6 @@ ucimlrepo>=0.0.6,<1.0
 notebook>=7.0,<8.0
 jupyter>=1.0,<2.0
 nbformat>=5.9,<6.0
+nbclient>=0.10,<1.0
 python-pptx>=1.0,<2.0
 pytest>=8.0,<9.0

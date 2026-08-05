@@ -8,6 +8,7 @@ from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from nbclient import NotebookClient
 import nbformat as nbf
 import pandas as pd
 import seaborn as sns
@@ -20,6 +21,7 @@ from src.data import NUMERIC_FEATURES, load_data
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUTS = ROOT / "outputs"
+SLIDES = ROOT / "slides"
 
 
 def current_experiment():
@@ -85,9 +87,6 @@ def generate_eda() -> None:
 
 def generate_notebook() -> None:
     experiment = current_experiment()
-    table = pd.DataFrame(experiment["rows"])[
-        ["model", "cv_pr_auc_mean", "cv_pr_auc_std", "cv_train_pr_auc_mean"]
-    ].round(4)
     notebook = nbf.v4.new_notebook(metadata={
         "kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
         "language_info": {"name": "python", "version": "3.11"},
@@ -103,18 +102,12 @@ def generate_notebook() -> None:
         nbf.v4.new_code_cell(f"final_report = json.loads((ROOT / 'reports/{experiment['test_report_file']}').read_text())\ntest = final_report['test_metrics']\nselected = {experiment['selected_model']!r}\npd.Series(test)[['roc_auc','pr_auc','precision_optimized','recall_optimized','f1_optimized','threshold_optimized']].to_frame(f'{{selected}} test').round(4)"),
         nbf.v4.new_markdown_cell("## Açıklanabilirlik\n\n![SHAP summary](../outputs/shap_summary.png)\n\n`PageValues` güçlü bir sinyal olsa da gerçek zamanlı kullanımda leakage riski ayrıca değerlendirilmelidir. SHAP ilişkisel model katkısını gösterir, nedensellik göstermez."),
     ]
-    # Store representative outputs so GitHub renders the notebook as completed.
-    notebook.cells[1]["execution_count"] = 1
-    row_count = len(load_data())
-    notebook.cells[1]["outputs"] = [nbf.v4.new_output("stream", name="stdout", text=f"Satır: {row_count:,} | Sütun: 18 | Eksik: 0\n")]
-    notebook.cells[6]["execution_count"] = 2
-    notebook.cells[6]["outputs"] = [nbf.v4.new_output("execute_result", execution_count=2,
-        data={"text/plain": table.to_string(index=False), "text/html": table.to_html(index=False)})]
-    test = experiment["test"]
-    test_series = pd.Series({k: test[k] for k in ["roc_auc", "pr_auc", "precision_optimized", "recall_optimized", "f1_optimized", "threshold_optimized"]}).round(4)
-    notebook.cells[7]["execution_count"] = 3
-    notebook.cells[7]["outputs"] = [nbf.v4.new_output("execute_result", execution_count=3,
-        data={"text/plain": test_series.to_string(), "text/html": test_series.to_frame(f"{experiment['selected_model']} test").to_html()})]
+    NotebookClient(
+        notebook,
+        timeout=300,
+        kernel_name="python3",
+        resources={"metadata": {"path": str(ROOT / "notebooks")}},
+    ).execute()
     nbf.write(notebook, ROOT / "notebooks" / "01_eda_modeling.ipynb")
 
 
@@ -138,6 +131,7 @@ def generate_slides() -> None:
     experiment = current_experiment()
     metrics = experiment["test"]
     data = load_data()
+    SLIDES.mkdir(parents=True, exist_ok=True)
     deck = Presentation(); deck.slide_width = Inches(13.333); deck.slide_height = Inches(7.5)
     blank = deck.slide_layouts[6]
     slide = deck.slides.add_slide(blank)
@@ -152,7 +146,7 @@ def generate_slides() -> None:
     _add_text(slide, f"TEST METRİKLERİ\nROC-AUC   {metrics['roc_auc']:.3f}\nPR-AUC      {metrics['pr_auc']:.3f}\nPrecision   {metrics['precision_optimized']:.3f}\nRecall        {metrics['recall_optimized']:.3f}\nF1              {metrics['f1_optimized']:.3f}", .7, 1.55, 3.2, 3.6, 20)
     slide.shapes.add_picture(str(OUTPUTS / "shap_summary.png"), Inches(4.1), Inches(1.35), width=Inches(8.4))
     _add_text(slide, f"ROBUSTNESS  5-seed PR-AUC {experiment['stability']['pr_auc_mean']:.3f}±{experiment['stability']['pr_auc_std']:.3f} · Temporal proxy {experiment['temporal']['pr_auc']:.3f}\nSINIRLAR  SHAP yalnız LGB bileşeni · PageValues leakage riski · tek site", .7, 6.15, 11.8, .8, 14)
-    deck.save(ROOT / "slides" / "Buy_or_Bye_Capstone.pptx")
+    deck.save(SLIDES / "Buy_or_Bye_Capstone.pptx")
 
 
 if __name__ == "__main__":
